@@ -89,6 +89,50 @@
                 </div>
             </div>
         </section>
+
+    <section class="certifications-section">
+    <h2 class="section-title">Certifications</h2>
+    
+    <div class="cert-grid"> 
+        
+        <div class="cert-card" onclick="openModal(0)">
+            <img src="cer1.png" class="cert-thumb">
+            <div class="cert-info">
+                <h3>Lý Luận Chính Trị</h3>
+                <p>OU | 2025</p>
+            </div>
+        </div>
+
+        <div class="cert-card" onclick="openModal(1)">
+            <img src="cer2.jpeg" class="cert-thumb">
+            <div class="cert-info">
+                <h3>Xuân Tình Nguyện 7</h3>
+                <p>Young Team | 2024</p>
+            </div>
+        </div>
+
+        <!-- <div class="cert-card" onclick="openModal(2)">
+            <img src="anh3.jpg" class="cert-thumb">
+            <div class="cert-info">
+                <h3>Chứng chỉ 3</h3>
+                <p>OU | 2025</p>
+            </div>
+        </div> -->
+
+    </div> 
+</section>
+
+<div id="certModal" class="modal">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    
+    <button class="nav-btn prev" onclick="changeImage(-1)">&#10094;</button>
+    <div class="modal-img-container">
+        <img class="modal-content" id="fullCertImage">
+    </div>
+    <button class="nav-btn next" onclick="changeImage(1)">&#10095;</button>
+</div>
+
     </main>
 
     <footer class="footer">
@@ -103,6 +147,6 @@
         </div>
         <p>© 2026 AnhTuan [ Light ] All rights reserved.</p>
     </footer>
-
+<script src="scr.js"></script>
 </body>
 </html>
