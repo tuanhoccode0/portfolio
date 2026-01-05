@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cer Page</title>
+    <link rel="stylesheet" href="stylecontact.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><img src="ava.jpeg"width="40" height="40" alt="avatar"></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="cer.html" class="contact-btn">Certifications</a></li>
+            <li><a href="gear.html">Gear</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><i class="fa-regular fa-sun"></i></li>
+        </ul>
+    </nav>
+
+
+    <main class="container">
+        <section class="hero">
+            <h1>Certifications</h1>
+            <p class="subtitle">Let's Get Started.</p>
+            <p class="description">Certifications Của Tôi !!!</p>
+        </section>
+
+    <section class="certifications-section">
+    <h2 class="section-title">Certifications</h2>
+    
+    <div class="cert-grid"> 
+        
+        <div class="cert-card" onclick="openModal(0)">
+            <img src="cer1.png" class="cert-thumb">
+            <div class="cert-info">
+                <h3>Lý Luận Chính Trị</h3>
+                <p>OU | 2025</p>
+            </div>
+        </div>
+
+        <div class="cert-card" onclick="openModal(1)">
+            <img src="cer2.jpeg" class="cert-thumb">
+            <div class="cert-info">
+                <h3>Xuân Tình Nguyện 7</h3>
+                <p>Young Team | 2024</p>
+            </div>
+        </div>
+
+        <!-- <div class="cert-card" onclick="openModal(2)">
+            <img src="anh3.jpg" class="cert-thumb">
+            <div class="cert-info">
+                <h3>Chứng chỉ 3</h3>
+                <p>OU | 2025</p>
+            </div>
+        </div> -->
+
+    </div> 
+</section>
+
+<div id="certModal" class="modal">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    
+    <button class="nav-btn prev" onclick="changeImage(-1)">&#10094;</button>
+    <div class="modal-img-container">
+        <img class="modal-content" id="fullCertImage">
+    </div>
+    <button class="nav-btn next" onclick="changeImage(1)">&#10095;</button>
+</div>
+
+    </main>
+
+    </section>
+
+    <footer class="text-center py-10 border-t border-zinc-900">
+        <div class="flex justify-center gap-6 text-xl text-gray-500 mb-6">
+            <a href="#" class="hover:text-white transition duration-300"><i class="fab fa-github"></i></a>
+            <a href="#" class="hover:text-blue-500 transition duration-300"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-red-600 transition duration-300"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="hover:text-pink-500 transition duration-300"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="text-gray-600 text-xs">© 2026 ATuan [ Light ]. All rights reserved.</p>
+    </footer>
+<script src="scr.js"></script>
+</body>
+</html>

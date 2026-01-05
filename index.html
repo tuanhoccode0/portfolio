@@ -13,6 +13,13 @@
         .youtube-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 1rem; border: 1px solid #27272a; }
         .youtube-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     </style>
+
+<head>
+    <link rel="icon" type="image/png" href="32x32.jpeg">
+    
+    <link rel="shortcut icon" type="image/x-icon" href="32x32.jpeg">
+</head>
+
 </head>
 <body class="max-w-3xl mx-auto px-6 py-10">
 
@@ -24,6 +31,7 @@
     <div class="flex gap-6 text-gray-400 text-sm font-medium">
         <a href="#" class="text-white bg-zinc-800 px-3 py-1 rounded-md">Home</a>
         <a href="about.html" class="hover:text-white transition">About</a>
+        <a href="contact.html" class="hover:text-white transition">Certifications</a>
         <a href="gear.html" class="hover:text-white transition">Gear</a>
         <a href="contact.html" class="hover:text-white transition">Contact</a>
 
@@ -62,9 +70,26 @@
                 <i class="fab fa-spotify text-[#1DB954]"></i> Recently Played
             </h2>
         </div>
-        <div class="glass-card p-1">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4082aBP37m3VYy8uR0UdPf?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
+        <div class="glass-card p-4 space-y-3">
+    <div class="flex items-center justify-between">
+        <p class="text-sm text-gray-400">
+            🎧 Currently vibing
+        </p>
+        <span class="text-xs bg-[#1DB954]/20 text-[#1DB954] px-3 py-1 rounded-full">
+            Spotify
+        </span>
+    </div>
+
+    <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/playlist/41ribQW0PoLKdmoFSmkHjr?utm_source=generator&theme=0"
+        width="100%" height="352" frameBorder="0" loading="lazy">
+    </iframe>
+    <p class="text-xs text-gray-500 italic">
+    🔊 Headphones on • Late night coding
+</p>
+
+</div>
+
     </section>
 
     <footer class="text-center py-10 border-t border-zinc-900">
