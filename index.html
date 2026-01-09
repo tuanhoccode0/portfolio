@@ -4,95 +4,220 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATuan [ Light ] Portfolio</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Patrick+Hand&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="32x32.jpeg">
+    <link rel="shortcut icon" type="image/x-icon" href="32x32.jpeg">
+
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; }
+        /* --- STYLE CŨ CỦA BẠN --- */
+        body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; transition: background-color 0.5s ease; }
         .glass-card { background: rgba(255, 255, 255, 0.03); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); }
         .youtube-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 1rem; border: 1px solid #27272a; }
         .youtube-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* --- STYLE CHO TAB LIFE (SCRAPBOOK) --- */
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Giao diện giấy cũ */
+        #tab-lifestyle {
+            background-color: #f3ebd8;
+            background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+            color: #333 !important; /* Ép chữ đen */
+            border-radius: 16px;
+            padding: 30px 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            overflow: hidden;
+        }
+
+        .scrapbook-wrapper { font-family: 'Patrick Hand', cursive; }
+        .sb-h1 { font-family: 'Permanent Marker', cursive; font-size: 2.5rem; transform: rotate(-2deg); margin: 10px 0; color: #111; }
+        .sb-caption { font-family: 'Indie Flower', cursive; font-size: 1.4rem; color: #444; font-weight: bold; margin-bottom: 5px; }
+
+        /* Film Strip */
+        .film-strip {
+            background-color: #1a1a1a; padding: 15px 0; display: flex; gap: 15px; align-items: center;
+            overflow-x: auto; scrollbar-width: none;
+            border-top: 4px dashed #555; border-bottom: 4px dashed #555;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3); margin-bottom: 40px;
+        }
+        .film-strip::-webkit-scrollbar { display: none; }
+        .film-frame { min-width: 150px; height: 100px; background: #fff; margin-left: 10px; flex-shrink: 0; overflow: hidden; position: relative; }
+        .film-frame.vertical { min-width: 100px; height: 150px; }
+
+        .film-frame img, .polaroid img {
+            width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(110%);
+            transition: all 0.4s ease; cursor: zoom-in;
+        }
+        .film-frame img:hover, .polaroid img:hover { filter: grayscale(0%); transform: scale(1.1); }
+
+        .polaroid {
+            background: white; padding: 10px 10px 50px 10px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2); transform: rotate(-3deg);
+            width: 240px; text-align: center; margin: 0 auto; position: relative;
+        }
+        .tape { position: absolute; top: -12px; left: 35%; width: 80px; height: 25px; background: rgba(0,0,0,0.1); transform: rotate(-2deg); }
+
+        /* Modal Lightbox */
+        .modal {
+            display: none; position: fixed; z-index: 9999; padding-top: 50px; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px);
+        }
+        .modal-content { margin: auto; display: block; width: 90%; max-width: 800px; max-height: 80vh; object-fit: contain; border: 4px solid #fff; }
+        .close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
     </style>
-
-<head>
-    <link rel="icon" type="image/png" href="32x32.jpeg">
-    
-    <link rel="shortcut icon" type="image/x-icon" href="32x32.jpeg">
 </head>
+<body class="max-w-4xl mx-auto px-6 py-10 transition-colors duration-500">
 
-</head>
-<body class="max-w-3xl mx-auto px-6 py-10">
-
-    <nav class="flex justify-between items-center mb-16">
-    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-zinc-800 shadow-lg">
-        <img src="ava.jpeg" alt="Avatar" class="w-full h-full object-cover">
-    </div>
-    
-    <div class="flex gap-6 text-gray-400 text-sm font-medium">
-        <a href="#" class="text-white bg-zinc-800 px-3 py-1 rounded-md">Home</a>
-        <a href="about.html" class="hover:text-white transition">About</a>
-        <a href="contact.html" class="hover:text-white transition">Certifications</a>
-        <a href="gear.html" class="hover:text-white transition">Gear</a>
-        <a href="contact.html" class="hover:text-white transition">Contact</a>
-
-    </div>
-    <button class="text-gray-400 hover:text-white"><i class="fas fa-moon"></i></button>
-</nav>
-
-    <header class="mb-12 text-center sm:text-left">
-        <h1 class="text-4xl font-extrabold mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
-            hello, ATuan [ Light ] here
-        </h1>
-        <p class="text-lg text-gray-400 leading-relaxed italic border-l-4 border-yellow-500 pl-4">
-            "Try Your Best For Your Life, Dream and Your Family."
-        </p>
-    </header>
-
-    <section class="mb-12">
-        <div class="flex justify-between items-end mb-4">
-            <h2 class="text-xl font-bold flex items-center gap-2">
-                <i class="fab fa-youtube text-red-600"></i> Latest Video
-            </h2>
+    <nav class="flex flex-col sm:flex-row justify-between items-center mb-10 gap-4">
+        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-zinc-800 shadow-lg cursor-pointer" onclick="switchTab('home')">
+            <img src="ava.jpeg" alt="Avatar" class="w-full h-full object-cover">
         </div>
-        <div class="youtube-embed">
-            <iframe 
-                src="https://www.youtube.com/embed/v2UASVo6ZpQ" 
-                title="YouTube video player" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
-        </div>
-    </section>
+        
+        <div class="flex flex-wrap justify-center gap-2 text-gray-400 text-sm font-medium bg-zinc-900 p-2 rounded-lg border border-zinc-800">
+            
+            <button onclick="switchTab('home')" id="btn-home" class="px-3 py-1.5 rounded-md text-white bg-zinc-700 transition-all font-bold shadow">
+                Home
+            </button>
+            
+            <a href="about.html" class="px-3 py-1.5 hover:text-white transition">About</a>
+            
+            <a href="cer.html" class="px-3 py-1.5 hover:text-white transition">Certifications</a>
+            
+            <a href="gear.html" class="px-3 py-1.5 hover:text-white transition">Gear</a>
+            
+            <a href="contact.html" class="px-3 py-1.5 hover:text-white transition">Contact</a>
 
-    <section class="mb-20">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-xl font-bold flex items-center gap-2">
-                <i class="fab fa-spotify text-[#1DB954]"></i> Recently Played
-            </h2>
+            <div class="w-[1px] h-6 bg-zinc-700 mx-1 hidden sm:block"></div>
+            
+            <button onclick="switchTab('life')" id="btn-life" class="px-3 py-1.5 rounded-md text-yellow-500 hover:text-white transition-all font-bold">
+                Life 📸
+            </button>
         </div>
-        <div class="glass-card p-4 space-y-3">
-    <div class="flex items-center justify-between">
-        <p class="text-sm text-gray-400">
-            🎧 Currently vibing
-        </p>
-        <span class="text-xs bg-[#1DB954]/20 text-[#1DB954] px-3 py-1 rounded-full">
-            Spotify
-        </span>
+
+        <button class="text-gray-400 hover:text-white"><i class="fas fa-moon"></i></button>
+    </nav>
+
+    <div id="tab-home" class="tab-content active">
+        <header class="mb-12 text-center sm:text-left">
+            <h1 class="text-4xl font-extrabold mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
+                hello, ATuan [ Light ] here
+            </h1>
+            <p class="text-lg text-gray-400 leading-relaxed italic border-l-4 border-yellow-500 pl-4">
+                "Try Your Best For Your Life, Dream and Your Family."
+            </p>
+        </header>
+
+        <section class="mb-12">
+            <div class="flex justify-between items-end mb-4">
+                <h2 class="text-xl font-bold flex items-center gap-2">
+                    <i class="fab fa-youtube text-red-600"></i> Latest Video
+                </h2>
+            </div>
+            <div class="youtube-embed">
+                <iframe src="https://www.youtube.com/embed/v2UASVo6ZpQ" title="YouTube video player" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold flex items-center gap-2">
+                    <i class="fab fa-spotify text-[#1DB954]"></i> Recently Played
+                </h2>
+            </div>
+            <div class="glass-card p-4 space-y-3">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm text-gray-400">🎧 Currently vibing</p>
+                    <span class="text-xs bg-[#1DB954]/20 text-[#1DB954] px-3 py-1 rounded-full">Spotify</span>
+                </div>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/41ribQW0PoLKdmoFSmkHjr?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" loading="lazy"></iframe>
+            </div>
+        </section>
     </div>
 
-    <iframe style="border-radius:12px"
-        src="https://open.spotify.com/embed/playlist/41ribQW0PoLKdmoFSmkHjr?utm_source=generator&theme=0"
-        width="100%" height="352" frameBorder="0" loading="lazy">
-    </iframe>
-    <p class="text-xs text-gray-500 italic">
-    🔊 Headphones on • Late night coding
-</p>
+    <div id="tab-life" class="tab-content">
+        <div id="tab-lifestyle"> 
+            <div class="scrapbook-wrapper">
+                
+                <div class="sb-header text-center mb-10 relative">
+                    <div style="font-size: 40px;">📷</div> 
+                    <h1 class="sb-h1">My Photo Collection</h1>
+                    <div class="absolute top-0 right-4 bg-yellow-400 px-2 py-1 text-xs font-bold transform rotate-12 border border-black shadow">Kodak 200</div>
+                </div>
 
-</div>
+                <div class="mb-8">
+                    <div class="sb-caption ml-6 transform -rotate-1">Daily Moments ☀️</div>
+                    <div class="film-strip transform rotate-1">
+                        <div class="film-frame"><img src="https://picsum.photos/400/600?random=1" loading="lazy" alt="Pic"></div>
+                        <div class="film-frame vertical"><img src="https://picsum.photos/400/600?random=2" loading="lazy" alt="Pic Vertical"></div>
+                        <div class="film-frame"><img src="https://picsum.photos/400/600?random=3" loading="lazy" alt="Pic"></div>
+                    </div>
+                </div>
 
-    </section>
+                <div class="mb-8">
+                    <div class="sb-caption text-right mr-10">Night Vibes 🌙</div>
+                    <div class="film-strip transform -rotate-1 bg-black">
+                        <div class="film-frame vertical"><img src="https://picsum.photos/400/600?random=6" loading="lazy" alt="Night V"></div>
+                        <div class="film-frame"><img src="https://picsum.photos/400/600?random=7" loading="lazy" alt="Night"></div>
+                        <div class="film-frame"><img src="https://picsum.photos/400/600?random=8" loading="lazy" alt="Night"></div>
+                    </div>
+                </div>
 
-    <footer class="text-center py-10 border-t border-zinc-900">
+                <div class="mb-8">
+                    <div class="sb-caption text-center text-xl">Travel Diaries ✈️</div>
+                    <div class="film-strip transform rotate-0 pl-4">
+                        <div class="film-frame"><img src="https://picsum.photos/400/600?random=10" loading="lazy" alt="Travel"></div>
+                        <div class="film-frame"><img src="https://picsum.photos/400/600?random=11" loading="lazy" alt="Travel"></div>
+                        <div class="film-frame"><img src="https://picsum.photos/400/600?random=12" loading="lazy" alt="Travel"></div>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <div class="sb-caption ml-20 transform rotate-2">Friends & Fun 🍻</div>
+                    <div class="film-strip transform rotate-2 bg-[#222]">
+                        <div class="film-frame vertical"><img src="https://picsum.photos/400/600?random=15" loading="lazy" alt="Friends V"></div>
+                        <div class="film-frame vertical"><img src="https://picsum.photos/400/600?random=16" loading="lazy" alt="Friends V"></div>
+                        <div class="film-frame"><img src="https://picsum.photos/400/600?random=17" loading="lazy" alt="Friends"></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-8 mt-10 mb-5">
+                    <div class="polaroid">
+                        <div class="tape"></div>
+                        <img src="https://picsum.photos/500/500?random=99" alt="Me">
+                        <div style="font-family: 'Permanent Marker'; color: #d9534f; margin-top: 15px;">It's Me!</div>
+                    </div>
+                    
+                    <div class="bg-[#fffdf0] p-6 shadow-md w-64 transform rotate-2 border border-gray-300 font-hand text-lg relative">
+                         <div class="absolute -top-3 left-1/2 w-4 h-12 bg-black/10 transform -rotate-3"></div> 
+                         "Lưu giữ khoảnh khắc không phải để luyến tiếc quá khứ, mà để trân trọng hiện tại..."
+                        <br><br>
+                        <div class="text-right font-bold">- 2026 -</div>
+                    </div>
+                </div>
+
+                <div class="absolute top-20 right-5 opacity-50 text-3xl select-none">✨</div>
+                <div class="absolute bottom-10 left-5 opacity-50 font-hand text-xl transform -rotate-12 select-none">memories...</div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal" onclick="closeModal(event)">
+        <span class="close" onclick="document.getElementById('myModal').style.display='none'">×</span>
+        <img class="modal-content" id="img01">
+        <div id="caption" class="text-center text-gray-300 mt-4 font-hand text-xl"></div>
+    </div>
+
+    <footer class="text-center py-10 border-t border-zinc-900 mt-10">
         <div class="flex justify-center gap-6 text-xl text-gray-500 mb-6">
             <a href="#" class="hover:text-white transition duration-300"><i class="fab fa-github"></i></a>
             <a href="#" class="hover:text-blue-500 transition duration-300"><i class="fab fa-facebook"></i></a>
@@ -101,6 +226,47 @@
         </div>
         <p class="text-gray-600 text-xs">© 2026 ATuan [ Light ]. All rights reserved.</p>
     </footer>
+
+    <script>
+        // 1. Chuyển Tab (Home / Life)
+        function switchTab(tabName) {
+            // Ẩn tất cả tab
+            document.getElementById('tab-home').style.display = 'none';
+            document.getElementById('tab-life').style.display = 'none';
+            
+            // Trả nút Home về trạng thái thường
+            var btnHome = document.getElementById('btn-home');
+            btnHome.className = "px-3 py-1.5 rounded-md hover:text-white transition-all text-gray-400";
+            
+            // Trả nút Life về trạng thái thường (có màu vàng chữ)
+            var btnLife = document.getElementById('btn-life');
+            btnLife.className = "px-3 py-1.5 rounded-md hover:text-white transition-all text-yellow-500 font-bold";
+
+            // Hiện tab được chọn
+            document.getElementById('tab-' + tabName).style.display = 'block';
+
+            // Active nút được chọn (Nền xám đậm, chữ trắng)
+            document.getElementById('btn-' + tabName).className = "px-3 py-1.5 rounded-md text-white bg-zinc-700 transition-all shadow font-bold";
+        }
+
+        // 2. Lightbox Logic
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        
+        document.querySelectorAll('.film-frame img, .polaroid img').forEach(img => {
+            img.onclick = function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                modalImg.style.filter = "none"; 
+            }
+        });
+
+        function closeModal(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>

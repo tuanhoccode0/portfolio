@@ -3,25 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Page</title>
-    <link rel="stylesheet" href="stylecontact.css">
-    <link rel="stylesheet" href="stylecontact.css">
+    <title>Contact - ATuan [ Light ]</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="icon" type="image/png" href="32x32.jpeg">
+    <link rel="shortcut icon" type="image/x-icon" href="32x32.jpeg">
+
+    <style>
+        /* --- 1. GLOBAL & MENU STYLES (ĐỒNG BỘ 100%) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+        /* NAVBAR CHUẨN */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 60px; flex-wrap: wrap; gap: 20px;
+        }
+
+        .nav-avatar {
+            width: 56px; height: 56px; border-radius: 50%; overflow: hidden;
+            border: 2px solid #3f3f46; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            transition: border-color 0.3s; display: block;
+        }
+        .nav-avatar:hover { border-color: #fff; }
+        .nav-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .nav-links {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(24, 24, 27, 0.8); backdrop-filter: blur(4px);
+            padding: 8px; border-radius: 12px; border: 1px solid #27272a;
+            flex-wrap: wrap; justify-content: center;
+        }
+
+        .nav-btn {
+            color: #9ca3af; text-decoration: none; font-size: 14px; font-weight: 600;
+            padding: 8px 16px; border-radius: 8px; transition: all 0.2s ease;
+        }
+        .nav-btn:hover { color: #fff; }
+        
+        .nav-btn.active { background-color: #3f3f46; color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .divider { width: 1px; height: 24px; background-color: #3f3f46; margin: 0 4px; }
+        .nav-btn.life { color: #eab308; } .nav-btn.life:hover { color: #fff; }
+
+
+        /* --- 2. CONTACT PAGE SPECIFIC CSS --- */
+        
+        /* Hero Section */
+        .hero { text-align: center; margin-bottom: 60px; }
+        .hero h1 { 
+            font-size: 36px; font-weight: 800; margin-bottom: 5px; 
+            background: -webkit-linear-gradient(left, #fff, #6b7280);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .subtitle { color: #a1a1aa; font-size: 1.2rem; margin-bottom: 10px; }
+        .description { color: #71717a; font-style: italic; font-size: 0.95rem; }
+
+        /* Social Grid */
+        .social-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+        }
+        
+        /* Social Card Styling */
+        .social-card {
+            background: #09090b; border: 1px solid #18181b; border-radius: 16px;
+            padding: 25px; display: flex; align-items: center; gap: 20px;
+            text-decoration: none; transition: all 0.3s ease;
+        }
+
+        .social-card:hover {
+            background: #18181b; border-color: #333; transform: translateY(-3px);
+        }
+
+        /* Icon Container */
+        .icon-box {
+            width: 50px; height: 50px; background: #111; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; border: 1px solid #27272a; flex-shrink: 0;
+            transition: 0.3s;
+        }
+
+        /* Hover Colors for Icons */
+        .social-card:hover .icon-box.mail { color: #ea4335; border-color: rgba(234, 67, 53, 0.3); background: rgba(234, 67, 53, 0.1); }
+        .social-card:hover .icon-box.insta { color: #e1306c; border-color: rgba(225, 48, 108, 0.3); background: rgba(225, 48, 108, 0.1); }
+        .social-card:hover .icon-box.fb { color: #1877f2; border-color: rgba(24, 119, 242, 0.3); background: rgba(24, 119, 242, 0.1); }
+        .social-card:hover .icon-box.discord { color: #5865f2; border-color: rgba(88, 101, 242, 0.3); background: rgba(88, 101, 242, 0.1); }
+
+        /* Text Styling */
+        .card-title { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+        .card-detail { color: #71717a; font-size: 13px; font-family: monospace; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .social-grid { grid-template-columns: 1fr; }
+            .navbar { justify-content: center; }
+        }
+
+        /* Footer */
+        footer { margin-top: 80px; text-align: center; font-size: 12px; color: #52525b; padding: 40px 0; border-top: 1px solid #18181b; }
+        
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo"><img src="ava.jpeg"width="40" height="40" alt="avatar"></div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="cer.html">Certifications</a></li>
-            <li><a href="gear.html">Gear</a></li>
-            <li><a href="contact.html" class="contact-btn">Contact</a></li>
-            <li><i class="fa-regular fa-sun"></i></li>
-        </ul>
-    </nav>
+    <div class="container">
+        
+        <nav class="navbar">
+            <a href="index.html" class="nav-avatar">
+                <img src="ava.jpeg" alt="Avatar">
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="cer.html" class="nav-btn">Certifications</a>
+                <a href="gear.html" class="nav-btn">Gear</a>
+                <a href="contact.html" class="nav-btn active">Contact</a>
+                
+                <div class="divider"></div>
+                <a href="index.html" class="nav-btn life">Life 📸</a>
+            </div>
+        </nav>
 
-    <main class="container">
         <section class="hero">
             <h1>Contact</h1>
             <p class="subtitle">Let's connect.</p>
@@ -29,122 +141,48 @@
         </section>
 
         <div class="social-grid">
-            <div class="social-card">
-                <i class="fa-regular fa-envelope"></i>
+            
+            <a href="mailto:Nguyenanhtuan03062007@gmail.com" class="social-card">
+                <div class="icon-box mail"><i class="fa-regular fa-envelope"></i></div>
                 <div>
                     <div class="card-title">Email</div>
                     <div class="card-detail">Nguyenanhtuan03062007@gmail.com</div>
                 </div>
-            </div>
-            <div class="social-card">
-                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="https://instagram.com/Co_by___" target="_blank" class="social-card">
+                <div class="icon-box insta"><i class="fa-brands fa-instagram"></i></div>
                 <div>
                     <div class="card-title">Instagram</div>
                     <div class="card-detail">@Co_by___</div>
                 </div>
-            </div>
-            <div class="social-card">
-                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+
+            <a href="https://facebook.com/anh.tuan.765968" target="_blank" class="social-card">
+                <div class="icon-box fb"><i class="fa-brands fa-facebook-f"></i></div>
                 <div>
                     <div class="card-title">Facebook</div>
-                    <div class="card-detail">anh.tuan.765968</div>
+                    <div class="card-detail">Anh Tuan</div>
                 </div>
-            </div>
-            <div class="social-card">
-                <i class="fa-brands fa-discord"></i>
+            </a>
+
+            <a href="#" class="social-card">
+                <div class="icon-box discord"><i class="fa-brands fa-discord"></i></div>
                 <div>
                     <div class="card-title">Discord</div>
                     <div class="card-detail">Join Server</div>
                 </div>
-            </div>
-        </div>
-
-        <!-- <section class="booking">
-            <h2>Book a Call</h2>
-            <p class="description">Liên Hệ Nếu Bạn Muốn vv</p>
+            </a>
             
-            <div class="booking-grid">
-                <div class="booking-card">
-                    <div class="card-header">
-                        <h3>15 Phút Xàm</h3>
-                        <span class="badge">15 min</span>
-                    </div>
-                    <p>Xàm</p>
-                    <a href="#" class="select-link">Select this option <i class="fa-solid fa-chevron-right"></i></a>
-                </div>
-                <div class="booking-card">
-                    <div class="card-header">
-                        <h3>30 Phút Tào Lao</h3>
-                        <span class="badge">30 min</span>
-                    </div>
-                    <p>Tào Lao</p>
-                    <a href="#" class="select-link">Select this option <i class="fa-solid fa-chevron-right"></i></a>
-                </div>
-                <div class="booking-card">
-                    <div class="card-header">
-                        <h3>60 Phút Hề</h3>
-                        <span class="badge">60 min</span>
-                    </div>
-                    <p>Hề</p>
-                    <a href="#" class="select-link">Select this option <i class="fa-solid fa-chevron-right"></i></a>
-                </div>
-            </div>
-        </section> -->
-
-
-    <!-- <section class="certifications-section">
-    <h2 class="section-title">Certifications</h2>
-    
-    <div class="cert-grid"> 
-        
-        <div class="cert-card" onclick="openModal(0)">
-            <img src="cer1.png" class="cert-thumb">
-            <div class="cert-info">
-                <h3>Lý Luận Chính Trị</h3>
-                <p>OU | 2025</p>
-            </div>
         </div>
 
-        <div class="cert-card" onclick="openModal(1)">
-            <img src="cer2.jpeg" class="cert-thumb">
-            <div class="cert-info">
-                <h3>Xuân Tình Nguyện 7</h3>
-                <p>Young Team | 2024</p>
-            </div>
-        </div>
+        <footer>
+            <p class="text-[11px] text-gray-600 tracking-wide opacity-70">
+                © 2026 ATuan [ Light ]. All rights reserved.
+            </p>
+        </footer>
 
-        <!-- <div class="cert-card" onclick="openModal(2)">
-            <img src="anh3.jpg" class="cert-thumb">
-            <div class="cert-info">
-                <h3>Chứng chỉ 3</h3>
-                <p>OU | 2025</p>
-            </div>
-        </div> -->
-
-    </div> 
-</section>
-
-<div id="certModal" class="modal">
-    <div class="modal-overlay" onclick="closeModal()"></div>
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    
-    <button class="nav-btn prev" onclick="changeImage(-1)">&#10094;</button>
-    <div class="modal-img-container">
-        <img class="modal-content" id="fullCertImage">
     </div>
-    <button class="nav-btn next" onclick="changeImage(1)">&#10095;</button>
-</div>
 
-    </main>
-
-    </section>
-
-    <footer class="py-6 text-center">
-  <p class="text-[11px] text-gray-600 tracking-wide opacity-70">
-    © 2026 ATuan [ Light ]. All rights reserved.
-  </p>
-</footer>
-
-<script src="scr.js"></script>
 </body>
 </html>

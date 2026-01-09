@@ -2,60 +2,250 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Gear - AnhTuan [ Light ]</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylegear.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gear - ATuan [ Light ]</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="icon" type="image/png" href="32x32.jpeg">
+    <link rel="shortcut icon" type="image/x-icon" href="32x32.jpeg">
+
+    <style>
+        /* --- 1. GLOBAL & MENU STYLES (ĐỒNG BỘ VỚI CÁC TRANG KHÁC) --- */
+        :root {
+            --bg-color: #000000;
+            --card-hover: #0f0f0f;
+            --text-main: #ffffff;
+            --text-sub: #a1a1a1;
+            --border-color: #222222;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        /* Container chung (900px để khớp với About/Cer) */
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+        /* --- NAVBAR CHUẨN --- */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 60px; flex-wrap: wrap; gap: 20px;
+        }
+
+        .nav-avatar {
+            width: 56px; height: 56px; border-radius: 50%; overflow: hidden;
+            border: 2px solid #3f3f46; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            transition: border-color 0.3s; display: block;
+        }
+        .nav-avatar:hover { border-color: #fff; }
+        .nav-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .nav-links {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(24, 24, 27, 0.8); backdrop-filter: blur(4px);
+            padding: 8px; border-radius: 12px; border: 1px solid #27272a;
+            flex-wrap: wrap; justify-content: center;
+        }
+
+        .nav-btn {
+            color: #9ca3af; text-decoration: none; font-size: 14px; font-weight: 600;
+            padding: 8px 16px; border-radius: 8px; transition: all 0.2s ease;
+        }
+        .nav-btn:hover { color: #fff; }
+        
+        /* Active State */
+        .nav-btn.active { background-color: #3f3f46; color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        
+        .divider { width: 1px; height: 24px; background-color: #3f3f46; margin: 0 4px; }
+        .nav-btn.life { color: #eab308; } .nav-btn.life:hover { color: #fff; }
+
+
+        /* --- 2. GEAR PAGE SPECIFIC CSS (CODE CỦA BẠN) --- */
+        
+        /* Header Section */
+        header { margin-bottom: 40px; text-align: center; }
+        header h1 { 
+            font-size: 36px; font-weight: 800; margin-bottom: 5px; 
+            /* Gradient text effect cho đẹp giống About */
+            background: -webkit-linear-gradient(left, #fff, #6b7280);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle { color: var(--text-sub); font-size: 1.1rem; }
+
+        /* Section & Grid */
+        .category-title {
+            font-size: 18px; font-weight: 600; color: #d1d5db;
+            margin-bottom: 24px; padding-top: 24px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        
+        .border-top { border-top: 1px solid var(--border-color); }
+
+        .gear-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; margin-bottom: 48px;
+        }
+
+        /* Gear Card */
+        .gear-card {
+            display: flex; align-items: center; gap: 16px;
+            text-decoration: none; padding: 16px; border-radius: 12px;
+            background: #09090b; border: 1px solid #18181b;
+            transition: all 0.2s;
+        }
+
+        .gear-card:hover {
+            background: var(--card-hover); border-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .img-wrapper {
+            width: 70px; height: 70px;
+            background: #111; border-radius: 10px;
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+            border: 1px solid #1a1a1a; flex-shrink: 0;
+        }
+
+        .img-wrapper img { width: 85%; height: 85%; object-fit: contain; }
+
+        /* Info */
+        .gear-info { flex: 1; }
+        
+        .gear-header { display: flex; justify-content: space-between; align-items: center; }
+
+        .gear-card h3 { color: #fff; font-size: 15px; font-weight: 600; margin: 0; }
+        .gear-card p { color: var(--text-sub); font-size: 13px; margin: 4px 0 0 0; }
+
+        .external-icon { font-size: 12px; color: #444; opacity: 0; transition: 0.2s; transform: translateX(-5px); }
+        .gear-card:hover .external-icon { opacity: 1; transform: translateX(0); }
+
+        /* Footer */
+        footer { margin-top: 60px; text-align: center; font-size: 12px; color: #52525b; padding: 40px 0; border-top: 1px solid #18181b; }
+        .social-icons { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; font-size: 20px; }
+        .social-icons a { color: #6b7280; transition: 0.3s; }
+        .social-icons a:hover { color: #fff; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .gear-grid { grid-template-columns: 1fr; }
+            .navbar { justify-content: center; }
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="cer.html">Certifications</a>
-            <a href="gear.html" class="active">Gear</a>
-            <a href="contact.html">Contact</a>
-        </div>
-    </nav>
+    <div class="container">
+        
+        <nav class="navbar">
+            <a href="index.html" class="nav-avatar">
+                <img src="ava.jpeg" alt="Avatar">
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="about.html" class="nav-btn">About</a>
+                <a href="cer.html" class="nav-btn">Certifications</a>
+                <a href="gear.html" class="nav-btn active">Gear</a>
+                <a href="contact.html" class="nav-btn">Contact</a>
+                
+                <div class="divider"></div>
+                <a href="index.html" class="nav-btn life">Life 📸</a>
+            </div>
+        </nav>
 
-    <main class="container">
         <header>
-            <h1>Gear</h1>
-            <p class="subtitle">What I use.</p>
+            <h1>My Gear</h1>
+            <p class="subtitle">Những thiết bị tôi sử dụng hàng ngày.</p>
         </header>
 
         <section>
-            <h2 class="category-title">Devices</h2>
+            <h2 class="category-title"><i class="fas fa-laptop" style="color:#60a5fa"></i> Devices</h2>
             <div class="gear-grid">
+                
                 <a href="#" class="gear-card">
-                    <div class="img-wrapper"><img src="mac.jpeg"></div>
+                    <div class="img-wrapper"><img src="mac.jpeg" alt="Macbook"></div>
                     <div class="gear-info">
                         <div class="gear-header">
-                            <h3>MacBook Air M2 13.6" Midnight</h3>
-                            <span class="external-icon">↗</span>
+                            <h3>MacBook Air M2</h3>
+                            <span class="external-icon"><i class="fas fa-arrow-up-right-from-square"></i></span>
                         </div>
-                        <p>M2 , 16GB RAM, 124TB SSD</p>
+                        <p>13.6" Midnight | 16GB RAM | 256GB SSD</p>
                     </div>
                 </a>
+
                 <a href="#" class="gear-card">
-                    <div class="img-wrapper"><img src="ipad11.jpeg"></div>
+                    <div class="img-wrapper"><img src="ipad11.jpeg" alt="iPad"></div>
                     <div class="gear-info">
                         <div class="gear-header">
-                            <h3>Ipad Gen 11</h3>
-                            <span class="external-icon">↗</span>
+                            <h3>iPad Air Gen 5</h3>
+                            <span class="external-icon"><i class="fas fa-arrow-up-right-from-square"></i></span>
                         </div>
-                        <p>11" , 124GB</p>
+                        <p>10.9" | M1 Chip | Blue</p>
                     </div>
                 </a>
+
+                 <a href="#" class="gear-card">
+                    <div class="img-wrapper"><i class="fas fa-mobile-alt text-3xl text-gray-500"></i></div>
+                    <div class="gear-info">
+                        <div class="gear-header">
+                            <h3>iPhone 13</h3>
+                            <span class="external-icon"><i class="fas fa-arrow-up-right-from-square"></i></span>
+                        </div>
+                        <p>128GB | Pink</p>
+                    </div>
+                </a>
+
             </div>
         </section>
 
         <section>
-            <h2 class="category-title border-top">PC Build</h2>
+            <h2 class="category-title border-top"><i class="fas fa-desktop" style="color:#a78bfa"></i> PC Build</h2>
             <div class="gear-grid">
-                </div>
+                
+                <a href="#" class="gear-card">
+                    <div class="img-wrapper"><i class="fas fa-microchip text-3xl text-gray-500"></i></div>
+                    <div class="gear-info">
+                        <div class="gear-header">
+                            <h3>CPU / Mainboard</h3>
+                            <span class="external-icon"><i class="fas fa-arrow-up-right-from-square"></i></span>
+                        </div>
+                        <p>Intel Core i5 / B760M</p>
+                    </div>
+                </a>
+
+                <a href="#" class="gear-card">
+                    <div class="img-wrapper"><i class="fas fa-memory text-3xl text-gray-500"></i></div>
+                    <div class="gear-info">
+                        <div class="gear-header">
+                            <h3>RAM / Storage</h3>
+                            <span class="external-icon"><i class="fas fa-arrow-up-right-from-square"></i></span>
+                        </div>
+                        <p>32GB DDR4 / 1TB NVMe</p>
+                    </div>
+                </a>
+
+            </div>
         </section>
-    </main>
+
+        <footer>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2026 ATuan [ Light ]. All rights reserved.</p>
+        </footer>
+
+    </div>
 
 </body>
 </html>
