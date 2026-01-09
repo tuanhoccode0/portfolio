@@ -93,6 +93,18 @@
             cursor: zoom-in; /* Con trỏ hình kính lúp */
         }
 
+        /* Class riêng cho ảnh DỌC (Vertical) */
+.film-frame.vertical {
+    min-width: 110px; /* Bóp chiều ngang lại */
+    height: 170px;    /* Tăng chiều cao lên */
+}
+
+/* CẬP NHẬT: Thêm dòng này vào class .film-strip cũ 
+   để ảnh dọc và ngang căn giữa đẹp mắt */
+.film-strip {
+    /* ... các dòng cũ giữ nguyên ... */
+    align-items: center; /* <-- Thêm dòng này quan trọng nha! */
+}
         /* Khi Hover */
         .film-frame img:hover, .polaroid img:hover {
             filter: grayscale(0%) contrast(100%); /* Hiện màu */
@@ -164,54 +176,54 @@
             
             <div class="sb-header">
                 <div style="font-size: 50px;">📷</div> 
-                <h1 class="sb-h1">Vibin' through Oct stash</h1>
+                <h1 class="sb-h1">Story In My Life 25s</h1>
                 <div style="position: absolute; top: 10px; right: 10%; background: #ffc107; padding: 5px 10px; font-weight:bold; transform: rotate(15deg); border: 1px solid #333;">Kodak 200</div>
             </div>
 
             <div class="film-strip-container">
-                <div class="sb-caption" style="margin-left: 20px; transform: rotate(-2deg);">Naura's day ☀️</div>
+                <div class="sb-caption" style="margin-left: 20px; transform: rotate(-2deg);">Ceremony's day ☀️</div>
                 <div class="film-strip" style="transform: rotate(1deg);">
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=1" loading="lazy" alt="Sunny Day"></div>
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=2" loading="lazy" alt="Coffee Time"></div>
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=3" loading="lazy" alt="Street View"></div>
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=4" loading="lazy" alt="Bookstore"></div>
+                    <div class="film-frame vertical"><img src="f1d.JPG" loading="lazy" alt="Sunny Day"></div>
+                    <div class="film-frame"><img src="f3n.JPG" loading="lazy" alt="Coffee Time"></div>
+                    <div class="film-frame vertical"><img src="f2d.JPG" loading="lazy" alt="Street View"></div>
+                    <div class="film-frame vertical"><img src="f4d.JPG" loading="lazy" alt="Bookstore"></div>
                 </div>
             </div>
 
             <div class="film-strip-container">
                 <div class="sb-caption" style="text-align: right; margin-right: 40px;">Memories <span style="font-size:24px">≧◡≦</span></div>
                 <div class="film-strip" style="transform: rotate(-1.5deg);">
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=6" loading="lazy" alt="Besties"></div>
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=7" loading="lazy" alt="Laughing"></div>
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=8" loading="lazy" alt="Travel"></div>
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=9" loading="lazy" alt="Sunset"></div>
+                    <div class="film-frame vertical"><img src="f9d.JPG" loading="lazy" alt="Besties"></div>
+                    <div class="film-frame"><img src="f7n.JPG" loading="lazy" alt="Laughing"></div>
+                    <div class="film-frame vertical"><img src="f5d.JPG" loading="lazy" alt="Travel"></div>
+                    <div class="film-frame vertical"><img src="f6d.jpeg" loading="lazy" alt="Sunset"></div>
                 </div>
             </div>
 
             <div class="film-strip-container" style="margin-top: 50px;">
                 <div class="sb-caption" style="margin-left: 100px; color: #666;">Late night vibes 🌙</div>
                 <div class="film-strip" style="transform: rotate(2deg); background: #111;">
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=11" loading="lazy" alt="Night City"></div>
+                    <!-- <div class="film-frame"><img src="https://picsum.photos/600/400?random=11" loading="lazy" alt="Night City"></div>
                     <div class="film-frame"><img src="https://picsum.photos/600/400?random=12" loading="lazy" alt="Neon Lights"></div>
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=13" loading="lazy" alt="Chill"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=13" loading="lazy" alt="Chill"></div> -->
                 </div>
             </div>
 
             <div class="film-strip-container" style="width: 100vw; margin-left: calc(50% - 50vw); margin-top: 60px;">
                 <div class="sb-caption" style="text-align: center; font-size: 2rem;">Food Tour 🍜🍕☕</div>
                 <div class="film-strip" style="transform: rotate(0deg); padding-left: 50px; gap: 20px;">
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=16" loading="lazy" alt="Noodles"></div>
+                    <!-- <div class="film-frame"><img src="https://picsum.photos/600/400?random=16" loading="lazy" alt="Noodles"></div>
                     <div class="film-frame"><img src="https://picsum.photos/600/400?random=17" loading="lazy" alt="Pizza"></div>
                     <div class="film-frame"><img src="https://picsum.photos/600/400?random=18" loading="lazy" alt="Dessert"></div>
                     <div class="film-frame"><img src="https://picsum.photos/600/400?random=19" loading="lazy" alt="Drinks"></div>
-                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=20" loading="lazy" alt="Yummy"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=20" loading="lazy" alt="Yummy"></div> -->
                 </div>
             </div>
 
             <div class="sb-bottom">
                 <div class="polaroid">
                     <div class="tape"></div>
-                    <img src="https://picsum.photos/600/600?random=99" alt="This is Me!">
+                    <img src="ava.jpeg" alt="This is Me!">
                     <div style="font-family: 'Permanent Marker'; color: #d9534f; margin-top: 15px; font-size: 1.3rem;">It's Me!</div>
                 </div>
 
