@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio & Scrapbook</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Patrick+Hand&family=Permanent+Marker&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS CƠ BẢN (CHO CẢ TRANG) --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+        }
+
+        /* --- THANH ĐIỀU HƯỚNG TAB --- */
+        .tab-nav {
+            background: #222;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .tab-button {
+            background: none; border: none;
+            color: #aaa; font-size: 1.1rem;
+            cursor: pointer; padding: 10px 20px;
+            transition: 0.3s; font-weight: bold;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tab-button:hover, .tab-button.active {
+            color: #fff;
+        }
+        
+        .tab-button.active { border-bottom: 3px solid #ffc107; }
+
+        /* Logic ẩn/hiện Tab */
+        .tab-content { display: none; animation: fadeIn 0.6s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- CSS RIÊNG CHO TAB SCRAPBOOK --- */
+        #tab-lifestyle {
+    background-color: #fffdf0; /* Màu trắng kem */
+    /* Hoa văn ô vuông nhạt */
+    background-image: url('https://www.transparenttextures.com/patterns/graphy.png');
+    min-height: 100vh; padding-bottom: 100px;
+}
+
+        .scrapbook-wrapper {
+            font-family: 'Patrick Hand', cursive;
+            color: #333; max-width: 900px; margin: 0 auto;
+            position: relative; padding-top: 40px;
+        }
+
+        /* Header Scrapbook */
+        .sb-header { text-align: center; margin-bottom: 50px; position: relative; }
+        .sb-h1 { font-family: 'Permanent Marker', cursive; font-size: 3.5rem; transform: rotate(-2deg); margin: 10px 0; }
+
+        /* Film Strip Styles */
+        .film-strip-container { margin-bottom: 60px; position: relative; }
+        .sb-caption { font-family: 'Indie Flower', cursive; font-size: 1.6rem; margin-bottom: 5px; color: #444; font-weight: bold; }
+        
+        .film-strip {
+            background-color: #1a1a1a;
+            padding: 18px 0; display: flex; gap: 15px;
+            overflow-x: auto; scrollbar-width: none; /* Ẩn thanh cuộn */
+            border-top: 4px dashed #555; border-bottom: 4px dashed #555;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        }
+        .film-strip::-webkit-scrollbar { display: none; }
+        
+        .film-frame {
+            min-width: 160px; height: 110px;
+            background: #fff; margin-left: 10px;
+            flex-shrink: 0; overflow: hidden;
+        }
+
+        /* --- HIỆU ỨNG ẢNH (TRẮNG ĐEN -> MÀU) --- */
+        .film-frame img, .polaroid img {
+            width: 100%; height: 100%; object-fit: cover;
+            /* Mặc định đen trắng */
+            filter: grayscale(100%) contrast(110%);
+            transition: filter 0.5s ease, transform 0.3s ease;
+            cursor: zoom-in; /* Con trỏ hình kính lúp */
+        }
+
+        /* Khi Hover */
+        .film-frame img:hover, .polaroid img:hover {
+            filter: grayscale(0%) contrast(100%); /* Hiện màu */
+            transform: scale(1.05); /* Phóng to nhẹ */
+        }
+
+        /* Polaroid Section */
+        .sb-bottom { display: flex; flex-wrap: wrap; justify-content: center; gap: 50px; margin-top: 80px; }
+        .polaroid {
+            background: white; padding: 15px 15px 60px 15px;
+            box-shadow: 3px 3px 12px rgba(0,0,0,0.2);
+            transform: rotate(-3deg); width: 280px; text-align: center; position: relative;
+        }
+        .tape {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            width: 120px; height: 35px; background-color: rgba(255,255,255,0.4);
+        }
+        .note-card {
+            background: #fdf6e3; padding: 30px; width: 300px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.15);
+            transform: rotate(2deg); font-size: 1.2rem; border: 1px solid #e0d0b0;
+        }
+
+        /* --- CSS LIGHTBOX (PHÓNG TO ẢNH) --- */
+        .modal {
+            display: none; position: fixed; z-index: 9999;
+            padding-top: 50px; left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            margin: auto; display: block;
+            width: 80%; max-width: 900px; max-height: 85vh;
+            object-fit: contain;
+            border: 4px solid #fff;
+            animation: zoomIn 0.3s;
+        }
+        @keyframes zoomIn { from {transform:scale(0)} to {transform:scale(1)} }
+        
+        .close {
+            position: absolute; top: 20px; right: 35px;
+            color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;
+        }
+        #caption {
+            margin: auto; display: block; width: 80%; max-width: 700px;
+            text-align: center; color: #ccc; padding: 10px 0;
+            font-family: 'Patrick Hand', cursive; font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="tab-nav">
+        <button class="tab-button" onclick="openTab(event, 'tab-home')">Home / CV</button>
+        <button class="tab-button" onclick="openTab(event, 'tab-projects')">Projects</button>
+        <button class="tab-button active" onclick="openTab(event, 'tab-lifestyle')">My Life 📸</button>
+    </nav>
+
+    <div id="tab-home" class="tab-content">
+        <div style="padding: 50px; text-align: center;"><h1>CV Portfolio</h1><p>Nội dung giới thiệu bản thân...</p></div>
+    </div>
+
+    <div id="tab-projects" class="tab-content">
+        <div style="padding: 50px; text-align: center;"><h1>My Projects</h1><p>Các dự án đã làm...</p></div>
+    </div>
+
+    <div id="tab-lifestyle" class="tab-content active">
+        <div class="scrapbook-wrapper">
+            
+            <div class="sb-header">
+                <div style="font-size: 50px;">📷</div> 
+                <h1 class="sb-h1">Vibin' through Oct stash</h1>
+                <div style="position: absolute; top: 10px; right: 10%; background: #ffc107; padding: 5px 10px; font-weight:bold; transform: rotate(15deg); border: 1px solid #333;">Kodak 200</div>
+            </div>
+
+            <div class="film-strip-container">
+                <div class="sb-caption" style="margin-left: 20px; transform: rotate(-2deg);">Naura's day ☀️</div>
+                <div class="film-strip" style="transform: rotate(1deg);">
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=1" loading="lazy" alt="Sunny Day"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=2" loading="lazy" alt="Coffee Time"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=3" loading="lazy" alt="Street View"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=4" loading="lazy" alt="Bookstore"></div>
+                </div>
+            </div>
+
+            <div class="film-strip-container">
+                <div class="sb-caption" style="text-align: right; margin-right: 40px;">Memories <span style="font-size:24px">≧◡≦</span></div>
+                <div class="film-strip" style="transform: rotate(-1.5deg);">
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=6" loading="lazy" alt="Besties"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=7" loading="lazy" alt="Laughing"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=8" loading="lazy" alt="Travel"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=9" loading="lazy" alt="Sunset"></div>
+                </div>
+            </div>
+
+            <div class="film-strip-container" style="margin-top: 50px;">
+                <div class="sb-caption" style="margin-left: 100px; color: #666;">Late night vibes 🌙</div>
+                <div class="film-strip" style="transform: rotate(2deg); background: #111;">
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=11" loading="lazy" alt="Night City"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=12" loading="lazy" alt="Neon Lights"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=13" loading="lazy" alt="Chill"></div>
+                </div>
+            </div>
+
+            <div class="film-strip-container" style="width: 100vw; margin-left: calc(50% - 50vw); margin-top: 60px;">
+                <div class="sb-caption" style="text-align: center; font-size: 2rem;">Food Tour 🍜🍕☕</div>
+                <div class="film-strip" style="transform: rotate(0deg); padding-left: 50px; gap: 20px;">
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=16" loading="lazy" alt="Noodles"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=17" loading="lazy" alt="Pizza"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=18" loading="lazy" alt="Dessert"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=19" loading="lazy" alt="Drinks"></div>
+                    <div class="film-frame"><img src="https://picsum.photos/600/400?random=20" loading="lazy" alt="Yummy"></div>
+                </div>
+            </div>
+
+            <div class="sb-bottom">
+                <div class="polaroid">
+                    <div class="tape"></div>
+                    <img src="https://picsum.photos/600/600?random=99" alt="This is Me!">
+                    <div style="font-family: 'Permanent Marker'; color: #d9534f; margin-top: 15px; font-size: 1.3rem;">It's Me!</div>
+                </div>
+
+                <div class="note-card">
+                    <div style="position:absolute; top:-10px; right: 40%; width: 20px; height: 50px; background:rgba(0,0,0,0.1); transform: rotate(5deg);"></div>
+                    "Lưu giữ khoảnh khắc không phải để luyến tiếc quá khứ, mà để trân trọng hiện tại..."
+                    <br><br>
+                    <div style="text-align: right; font-weight: bold;">- 2025 -</div>
+                </div>
+            </div>
+            
+            <div style="position:absolute; top: 150px; right: 5%; font-size: 30px; opacity: 0.6;">✨</div>
+            <div style="position:absolute; bottom: 50px; left: 10%; font-family: 'Indie Flower'; opacity: 0.6;">blah bla bla...</div>
+
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        // 1. HÀM CHUYỂN TAB
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            if(evt) evt.currentTarget.classList.add("active");
+        }
+
+        // 2. LOGIC LIGHTBOX (PHÓNG TO ẢNH)
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        var span = document.getElementsByClassName("close")[0];
+
+        // Lấy tất cả ảnh
+        var images = document.querySelectorAll('.film-frame img, .polaroid img');
+
+        images.forEach(img => {
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src; // Lấy ảnh hiện tại gán vào modal
+                modalImg.style.filter = "none"; // Đảm bảo ảnh phóng to có màu
+                captionText.innerHTML = this.alt || "My Memory ✨"; // Lấy caption từ thẻ alt
+            }
+        });
+
+        // Đóng khi bấm nút X
+        span.onclick = function() { modal.style.display = "none"; }
+
+        // Đóng khi bấm ra ngoài vùng ảnh
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
